@@ -1,6 +1,6 @@
 # spring-boot-simple-api
 a sample project for learning spring boot
-up to now there are 3 entitites: post, tag & category
+up to now there are 3 entitites: post, tag & category <br>
 for using the apis, follow the structure below
 ## POST
 send a request to /api/posts or /api/tags or /api/categories
