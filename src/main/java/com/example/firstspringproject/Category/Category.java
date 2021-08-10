@@ -1,16 +1,14 @@
 package com.example.firstspringproject.Category;
 
 import com.example.firstspringproject.Post.Post;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table
@@ -28,7 +26,6 @@ public class Category {
     @Column(nullable = false)
     private LocalDateTime createdAt;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<Post> posts;
 
     public Category(String title) {

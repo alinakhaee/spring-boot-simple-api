@@ -25,18 +25,22 @@ public class TagService {
         tagRepository.save(tag);
     }
 
-    public void delete(Long id) throws Exception {
+    public Tag delete(Long id) throws Exception {
         if(!tagRepository.existsById(id))
             throw new Exception("tag with id " + id + " does not exist");
+        Tag tag = tagRepository.getById(id);
         tagRepository.deleteById(id);
+        return tag;
     }
 
     @Transactional
-    public void update(Long id, Tag newTag) throws Exception {
+    public Tag update(Long id, Tag newTag) throws Exception {
         Tag tag = tagRepository.findById(id).orElseThrow(() -> new Exception("tag with id " + id + " does not exist"));
 
         if( newTag.getTitle() != null )
             tag.setTitle(newTag.getTitle());
+
+        return tag;
     }
 
     public Tag findOne(Long id) throws Exception {
