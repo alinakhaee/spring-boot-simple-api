@@ -1,11 +1,12 @@
 package com.example.firstspringproject.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,35 +16,48 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @Autowired
-    public CategoryController(CategoryService categoryService){
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
     @GetMapping
-    public List<Category> findAll(){
-        return categoryService.findAll();
+    public ResponseEntity<List<CategoryDTO>> findAll() {
+        List<Category> categories = categoryService.findAll();
+        List<CategoryDTO> categoryDTOs = new ArrayList<>();
+        categories.forEach(category -> categoryDTOs.add(CategoryMapper.INSTANCE.toCategoryDTO(category)));
+        return ResponseEntity.ok().body(categoryDTOs);
     }
 
     @GetMapping(path = "{id}")
-    public Category findOne(@PathVariable Long id) throws Exception{
-        return this.categoryService.findOne(id);
+    public ResponseEntity<CategoryDTO> findOne(@PathVariable Long id) throws Exception {
+        CategoryDTO categoryDTO = CategoryMapper.INSTANCE.toCategoryDTO(this.categoryService.findOne(id));
+        return ResponseEntity.ok().body(categoryDTO);
     }
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody Category category){
+    public ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO categoryDTO) {
+        Category category = CategoryMapper.INSTANCE.toCategory(categoryDTO);
         category.setCreatedAt(LocalDateTime.now());
-        categoryService.create(category);
-        return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON).body("category created");
+        try {
+            categoryService.create(category);
+            CategoryDTO outputCategoryDTO = CategoryMapper.INSTANCE.toCategoryDTO(category);
+            return ResponseEntity.status(HttpStatus.CREATED).body(outputCategoryDTO);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().header(e.getMessage()).body(null);
+        }
     }
 
     @DeleteMapping(path = "{id}")
-    public void delete(@PathVariable("id") Long id) throws Exception {
-        categoryService.delete(id);
+    public ResponseEntity<CategoryDTO> delete(@PathVariable("id") Long id) throws Exception {
+        Category deletedCategory = categoryService.delete(id);
+        return ResponseEntity.ok().body(CategoryMapper.INSTANCE.toCategoryDTO(deletedCategory));
     }
 
     @PutMapping
-    public void update(@RequestParam(required = true) Long id, @RequestBody Category category) throws Exception {
-        categoryService.update(id, category);
+    public ResponseEntity<CategoryDTO> update(@RequestParam(required = true) Long id, @RequestBody CategoryDTO categoryDTO) throws Exception {
+        Category updatedCategory = categoryService.update(id, CategoryMapper.INSTANCE.toCategory(categoryDTO));
+        return ResponseEntity.ok().body(CategoryMapper.INSTANCE.toCategoryDTO(updatedCategory));
     }
 
 }

@@ -1,9 +1,11 @@
 package com.example.firstspringproject.Category;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,18 +26,22 @@ public class CategoryService {
         categoryRepository.save(tag);
     }
 
-    public void delete(Long id) throws Exception {
+    public Category delete(Long id) throws Exception {
         if(!categoryRepository.existsById(id))
             throw new Exception("category with id " + id + " does not exist");
+        Category deletedCategory = categoryRepository.getById(id);
         categoryRepository.deleteById(id);
+        return deletedCategory;
     }
 
     @Transactional
-    public void update(Long id, Category newCategory) throws Exception {
+    public Category update(Long id, Category newCategory) throws Exception {
         Category category = categoryRepository.findById(id).orElseThrow(() -> new Exception("category with id " + id + " does not exist"));
 
         if( newCategory.getTitle() != null )
             category.setTitle(newCategory.getTitle());
+
+        return categoryRepository.getById(id);
     }
 
     public Category findOne(Long id) throws Exception {
