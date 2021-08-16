@@ -12,8 +12,8 @@ import java.util.GregorianCalendar;
 import java.util.Random;
 
 @Configuration
-@EnableScheduling
-@EnableAsync
+//@EnableScheduling
+//@EnableAsync
 public class MySchedular implements SchedulingConfigurer{
     @Async
     @Scheduled(fixedRate = 1000, initialDelay = 3000)

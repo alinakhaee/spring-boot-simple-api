@@ -10,6 +10,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -43,6 +44,7 @@ public class Post {
         this.content = content;
         this.category = new Category();
         category.setId((long) 1);
+        this.tags = new ArrayList<>();
         this.createdAt = LocalDateTime.now();
     }
 

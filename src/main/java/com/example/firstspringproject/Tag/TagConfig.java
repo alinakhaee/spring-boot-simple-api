@@ -3,6 +3,7 @@ package com.example.firstspringproject.Tag;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class TagConfig {
 
     @Bean
+    @Order(1)
     CommandLineRunner tagCommandLineRunner(TagRepository repository){
         return args -> {
             Tag tag = new Tag("first tag");
