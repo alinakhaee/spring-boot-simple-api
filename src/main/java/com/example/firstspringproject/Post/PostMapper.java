@@ -22,7 +22,7 @@ public interface PostMapper {
     @Mapping(source = "createdAt", target = "createTime", dateFormat = "YYYY/MM/DD-hh:mm:ss")
     PostDTO toPostDTO(Post post);
 
-    default String toString(Category category){return category.getTitle();}
+    default String toString(Category category){return category == null ? " " : category.getTitle();}
 
     default List<String> toStringList(List<Tag> tags){
         List<String> stringList = new ArrayList<>();

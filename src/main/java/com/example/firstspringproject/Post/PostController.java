@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("api/posts")
@@ -37,7 +40,12 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostDTO> create(@RequestBody PostDTO postDTO) {
+    public ResponseEntity<PostDTO> create(@RequestBody PostDTO postDTO) throws Exception {
+        Set<ConstraintViolation<PostDTO>> violations = Validation.buildDefaultValidatorFactory().getValidator().validate(postDTO);
+        for(ConstraintViolation<PostDTO> violation : violations){
+            System.out.println(violation.getMessage());
+            throw new Exception(violation.getMessage());
+        }
         Post post = PostMapper.INSTANCE.toPost(postDTO);
         post.setCreatedAt(LocalDateTime.now());
         postService.create(post);

@@ -6,6 +6,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @SpringBootApplication
 public class FirstSpringProjectApplication{
 
@@ -13,12 +16,6 @@ public class FirstSpringProjectApplication{
 
         ConfigurableApplicationContext context = SpringApplication.run(FirstSpringProjectApplication.class, args);
 
-//        MyClass myClass1 = context.getBean(MyClass.class);
-//        myClass1.setMessage("myclass 1");
-//        myClass1.getMessage();
-//
-//        MyClass myClass2 = context.getBean(MyClass.class);
-//        myClass2.getMessage();
     }
 
 }
