@@ -8,6 +8,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Mapper
 public interface PostMapper {
@@ -24,7 +25,7 @@ public interface PostMapper {
 
     default String toString(Category category){return category == null ? " " : category.getTitle();}
 
-    default List<String> toStringList(List<Tag> tags){
+    default List<String> toStringList(Set<Tag> tags){
         List<String> stringList = new ArrayList<>();
         if(tags != null)
             tags.stream().forEach(tag -> stringList.add(tag.getTitle()));

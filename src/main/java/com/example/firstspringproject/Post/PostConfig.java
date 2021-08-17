@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 
 import java.util.List;
+import java.util.Set;
 
 @Configuration
 public class PostConfig {
@@ -21,11 +22,11 @@ public class PostConfig {
             Tag tag1 = new Tag("one tag");
             Tag tag2 = new Tag("two tag");
 
-            post.setTags(List.of(tag1, tag2));
-            post2.setTags(List.of(tag1));
+            post.setTags(Set.of(tag1, tag2));
+            post2.setTags(Set.of(tag1));
 
-            tag1.setPosts(List.of(post, post2));
-            tag2.setPosts(List.of(post));
+            tag1.setPosts(Set.of(post, post2));
+            tag2.setPosts(Set.of(post));
 
             repository.saveAll(List.of(post, post2));
         };

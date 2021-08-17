@@ -7,11 +7,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -30,11 +34,11 @@ public class Post {
     private String content;
     @Column(nullable = false)
     private LocalDateTime createdAt;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "post_tag",
             joinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
-    private List<Tag> tags;
+    private Set<Tag> tags;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -44,7 +48,7 @@ public class Post {
         this.content = content;
         this.category = new Category();
         category.setId((long) 1);
-        this.tags = new ArrayList<>();
+        this.tags = new HashSet<>();
         this.createdAt = LocalDateTime.now();
     }
 
