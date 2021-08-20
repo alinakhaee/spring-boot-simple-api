@@ -1,6 +1,6 @@
-package com.example.firstspringproject.Post;
+package com.example.firstspringproject.models.Post;
 
-import com.example.firstspringproject.Tag.Tag;
+import com.example.firstspringproject.models.Tag.Tag;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,7 @@
-package com.example.firstspringproject.Post;
+package com.example.firstspringproject.models.Post;
 
-import com.example.firstspringproject.Category.CategoryDTO;
-import com.example.firstspringproject.Tag.TagDTO;
+import com.example.firstspringproject.models.Category.CategoryDTO;
+import com.example.firstspringproject.models.Tag.TagDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

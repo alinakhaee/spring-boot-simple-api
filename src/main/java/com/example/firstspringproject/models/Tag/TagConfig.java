@@ -1,4 +1,4 @@
-package com.example.firstspringproject.Tag;
+package com.example.firstspringproject.models.Tag;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

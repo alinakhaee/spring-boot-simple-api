@@ -1,13 +1,12 @@
-package com.example.firstspringproject.Post;
+package com.example.firstspringproject.models.Post;
 
-import com.example.firstspringproject.Category.Category;
-import com.example.firstspringproject.Category.CategoryDTO;
-import com.example.firstspringproject.Category.CategoryRepository;
-import com.example.firstspringproject.Tag.Tag;
-import com.example.firstspringproject.Tag.TagDTO;
-import com.example.firstspringproject.Tag.TagRepository;
+import com.example.firstspringproject.models.Category.Category;
+import com.example.firstspringproject.models.Category.CategoryDTO;
+import com.example.firstspringproject.models.Category.CategoryRepository;
+import com.example.firstspringproject.models.Tag.Tag;
+import com.example.firstspringproject.models.Tag.TagDTO;
+import com.example.firstspringproject.models.Tag.TagRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

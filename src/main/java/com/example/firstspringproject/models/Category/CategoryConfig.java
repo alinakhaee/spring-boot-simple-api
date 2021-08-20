@@ -1,4 +1,4 @@
-package com.example.firstspringproject.Category;
+package com.example.firstspringproject.models.Category;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

@@ -1,28 +1,22 @@
 package com.example.firstspringproject;
 
-import com.example.firstspringproject.Category.Category;
-import com.example.firstspringproject.Category.CategoryRepository;
-import com.example.firstspringproject.Post.Post;
-import com.example.firstspringproject.Post.PostDTO;
-import com.example.firstspringproject.Post.PostMapper;
-import com.example.firstspringproject.Post.PostRepository;
-import com.example.firstspringproject.Tag.Tag;
-import com.example.firstspringproject.Tag.TagRepository;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.firstspringproject.models.Category.Category;
+import com.example.firstspringproject.models.Category.CategoryRepository;
+import com.example.firstspringproject.models.Post.Post;
+import com.example.firstspringproject.models.Post.PostRepository;
+import com.example.firstspringproject.models.Tag.Tag;
+import com.example.firstspringproject.models.Tag.TagRepository;
+import com.example.firstspringproject.models.User.AppUser;
+import com.example.firstspringproject.models.User.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Set;
 
@@ -33,19 +27,24 @@ public class RestTemplateCommandLineRunner implements CommandLineRunner {
     TagRepository tagRepository;
     PostRepository postRepository;
     CategoryRepository categoryRepository;
+    UserService userService;
 
     @Override
     public void run(String... args) throws Exception {
         Post post = new Post("runner post", "runner content");
         Tag tag = new Tag("runner tag");
         Category category = new Category("runner category");
+        AppUser user = new AppUser("ali", "ali@gmail.com", "alipassword");
+
         post.setTags(Set.of(tag));
         tag.setPosts(Set.of(post));
         post.setCategory(category);
         category.setPosts(List.of(post));
+
         categoryRepository.save(category);
         tagRepository.save(tag);
         postRepository.save(post);
+        userService.create(user);
 
         // using rest template
         RestTemplate restTemplate = new RestTemplate();
@@ -98,7 +97,8 @@ public class RestTemplateCommandLineRunner implements CommandLineRunner {
 //        HttpEntity<PostDTO> request = new HttpEntity<>(PostMapper.INSTANCE.toPostDTO(newPost));
 //        restTemplate.put(url+"?id=1", request);
 
-        // use delete
-        restTemplate.delete(url+"/1");
+//        // use delete
+//        restTemplate.delete(url+"/1");
     }
+
 }

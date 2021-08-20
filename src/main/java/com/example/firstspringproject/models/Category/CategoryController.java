@@ -1,4 +1,4 @@
-package com.example.firstspringproject.Category;
+package com.example.firstspringproject.models.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

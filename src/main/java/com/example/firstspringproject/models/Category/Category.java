@@ -1,6 +1,6 @@
-package com.example.firstspringproject.Category;
+package com.example.firstspringproject.models.Category;
 
-import com.example.firstspringproject.Post.Post;
+import com.example.firstspringproject.models.Post.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,14 +1,11 @@
-package com.example.firstspringproject.Tag;
+package com.example.firstspringproject.models.Tag;
 
-import com.example.firstspringproject.Post.Post;
+import com.example.firstspringproject.models.Post.Post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Entity

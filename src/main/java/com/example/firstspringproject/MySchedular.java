@@ -15,7 +15,7 @@ import java.util.Random;
 //@EnableScheduling
 //@EnableAsync
 public class MySchedular implements SchedulingConfigurer{
-    @Async
+    @Async()
     @Scheduled(fixedRate = 1000, initialDelay = 3000)
     public void scheduleFixedDelayTask() throws InterruptedException {
         System.out.println("one proccess waiting");

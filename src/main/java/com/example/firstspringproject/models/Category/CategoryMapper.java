@@ -1,6 +1,6 @@
-package com.example.firstspringproject.Category;
+package com.example.firstspringproject.models.Category;
 
-import com.example.firstspringproject.Post.Post;
+import com.example.firstspringproject.models.Post.Post;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

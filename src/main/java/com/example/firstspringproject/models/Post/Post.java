@@ -1,20 +1,16 @@
-package com.example.firstspringproject.Post;
+package com.example.firstspringproject.models.Post;
 
-import com.example.firstspringproject.Category.Category;
-import com.example.firstspringproject.Tag.Tag;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.example.firstspringproject.models.Category.Category;
+import com.example.firstspringproject.models.Tag.Tag;
+import com.example.firstspringproject.models.User.AppUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,6 +38,9 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    @ManyToOne
+    @JoinColumn(name = "user_username")
+    private AppUser user;
 
     public Post(String title, String content) {
         this.title = title;

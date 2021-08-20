@@ -1,18 +1,14 @@
 package com.example.firstspringproject;
 
-import com.example.firstspringproject.Category.Category;
-import com.example.firstspringproject.Category.CategoryDTO;
-import com.example.firstspringproject.Category.CategoryMapper;
-import com.example.firstspringproject.Category.CategoryRepository;
-import com.example.firstspringproject.Post.Post;
-import com.example.firstspringproject.Post.PostDTO;
-import com.example.firstspringproject.Post.PostMapper;
-import com.example.firstspringproject.Tag.Tag;
-import com.example.firstspringproject.Tag.TagDTO;
-import com.example.firstspringproject.Tag.TagMapper;
-import com.example.firstspringproject.Tag.TagRepository;
+import com.example.firstspringproject.models.Category.Category;
+import com.example.firstspringproject.models.Category.CategoryDTO;
+import com.example.firstspringproject.models.Category.CategoryMapper;
+import com.example.firstspringproject.models.Category.CategoryRepository;
+import com.example.firstspringproject.models.Post.Post;
+import com.example.firstspringproject.models.Tag.Tag;
+import com.example.firstspringproject.models.Tag.TagDTO;
+import com.example.firstspringproject.models.Tag.TagMapper;
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;

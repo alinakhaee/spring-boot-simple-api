@@ -1,4 +1,4 @@
-package com.example.firstspringproject.Post;
+package com.example.firstspringproject.models.Post;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

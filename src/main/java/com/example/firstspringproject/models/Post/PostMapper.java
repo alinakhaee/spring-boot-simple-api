@@ -1,7 +1,7 @@
-package com.example.firstspringproject.Post;
+package com.example.firstspringproject.models.Post;
 
-import com.example.firstspringproject.Category.Category;
-import com.example.firstspringproject.Tag.Tag;
+import com.example.firstspringproject.models.Category.Category;
+import com.example.firstspringproject.models.Tag.Tag;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
