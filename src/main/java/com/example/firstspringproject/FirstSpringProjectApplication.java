@@ -1,6 +1,9 @@
 package com.example.firstspringproject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.redisson.Redisson;
+import org.redisson.api.RAtomicLong;
+import org.redisson.api.RedissonClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -15,7 +18,10 @@ public class FirstSpringProjectApplication{
 
         ConfigurableApplicationContext context = SpringApplication.run(FirstSpringProjectApplication.class, args);
 
-
+        RedissonClient client = Redisson.create();
+        RAtomicLong myLong = client.getAtomicLong("myLong");
+        myLong.set(2);
+    client.shutdown();
     }
 
     @Bean
